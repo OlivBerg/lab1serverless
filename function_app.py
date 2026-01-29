@@ -6,8 +6,7 @@ import logging                  # Built-in Python library for printing log messa
 import json                     # Built-in Python library for working with JSON data
 import re                       # Built-in Python library for Regular Expressions (pattern matching)
 from datetime import datetime   # Built-in Python library for working with dates and times
-import time                     # Built-in Python library for time-related functions
-
+import uuid                     # Built-in Python library for generating unique IDs
 # =============================================================================
 # CREATE THE FUNCTION APP
 # =============================================================================
@@ -21,7 +20,13 @@ app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 # The @app.route decorator tells Azure: "When someone visits /api/TextAnalyzer, run this function"
 # This is called a "decorator" - it adds extra behavior to our function
 @app.route(route="TextAnalyzer")
-def TextAnalyzer(req: func.HttpRequest) -> func.HttpResponse:
+@app.cosmos_db_output(
+    arg_name="outputDocument",
+    database_name="lab1severdb",    
+    container_name="AnalysisResults",  
+    connection="DATABASE_CONNECTION_STRING" 
+)
+def TextAnalyzer(req: func.HttpRequest, outputDocument: func.Out[func.Document]) -> func.HttpResponse:
     """
     This function analyzes text and returns statistics about it.
 
@@ -113,7 +118,7 @@ def TextAnalyzer(req: func.HttpRequest) -> func.HttpResponse:
         # Create a Python dictionary with all our analysis results
         # This will be converted to JSON format
 
-        unique_id = str(time.time_ns())
+        unique_id = str(uuid.uuid4())
         response_data = {
             "analysis": {
                 "wordCount": word_count,
@@ -137,6 +142,10 @@ def TextAnalyzer(req: func.HttpRequest) -> func.HttpResponse:
             },
             "id": unique_id
         }
+        # Prepare document to save to Cosmos DB
+        outputDocument.set(func.Document.from_dict(response_data))
+
+
 
         # Return a successful HTTP response
         # json.dumps() converts Python dictionary to JSON string
