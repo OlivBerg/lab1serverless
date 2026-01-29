@@ -6,6 +6,7 @@ import logging                  # Built-in Python library for printing log messa
 import json                     # Built-in Python library for working with JSON data
 import re                       # Built-in Python library for Regular Expressions (pattern matching)
 from datetime import datetime   # Built-in Python library for working with dates and times
+import time                     # Built-in Python library for time-related functions
 
 # =============================================================================
 # CREATE THE FUNCTION APP
@@ -111,6 +112,8 @@ def TextAnalyzer(req: func.HttpRequest) -> func.HttpResponse:
         # =====================================================================
         # Create a Python dictionary with all our analysis results
         # This will be converted to JSON format
+
+        unique_id = str(time.time_ns())
         response_data = {
             "analysis": {
                 "wordCount": word_count,
@@ -131,7 +134,8 @@ def TextAnalyzer(req: func.HttpRequest) -> func.HttpResponse:
                 # The syntax: value_if_true if condition else value_if_false
                 # This is called a "ternary operator" or "conditional expression"
                 "textPreview": text[:100] + "..." if len(text) > 100 else text
-            }
+            },
+            "id": unique_id
         }
 
         # Return a successful HTTP response

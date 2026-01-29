@@ -1,0 +1,16 @@
+{
+  "analysis": {
+    "wordCount": 7,
+    "characterCount": 57,
+    "characterCountNoSpaces": 51,
+    "sentenceCount": 2,
+    "paragraphCount": 1,
+    "averageWordLength": 7.3,
+    "longestWord": "automatically.",
+    "readingTimeMinutes": 0.0
+  },
+  "metadata": {
+    "analyzedAt": "2026-01-29T02:16:38.997712",
+    "textPreview": "Serverless computing is amazing. It scales automatically."
+  }
+}
