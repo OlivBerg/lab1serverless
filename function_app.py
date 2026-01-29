@@ -140,7 +140,8 @@ def TextAnalyzer(req: func.HttpRequest, outputDocument: func.Out[func.Document])
                 # This is called a "ternary operator" or "conditional expression"
                 "textPreview": text[:100] + "..." if len(text) > 100 else text
             },
-            "id": unique_id
+            "id": unique_id,
+            "originalText": text
         }
         # Prepare document to save to Cosmos DB
         outputDocument.set(func.Document.from_dict(response_data))
