@@ -4,7 +4,7 @@
 
 [Youtube](https://youtu.be/iuIueGmHzOQ)
 
-[Database Choice]()
+[Database Choice](https://github.com/OlivBerg/lab1serverless/blob/master/DATABASE_CHOICE.md)
 
 ## History Endpoint
 
