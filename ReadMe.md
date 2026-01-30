@@ -1,8 +1,10 @@
 # Lab 1: Create and Deploy Your First Azure Function
 
-## Demo
+## Demo and reflection
 
 [Youtube](https://youtu.be/iuIueGmHzOQ)
+
+[Database Choice]()
 
 ## History Endpoint
 
