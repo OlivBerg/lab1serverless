@@ -6,7 +6,7 @@
 
 [Database Choice](https://github.com/OlivBerg/lab1serverless/blob/master/DATABASE_CHOICE.md)
 
-## History Endpoint
+## History Endpoint test
 
 [HistoryEndpoint](https://github.com/OlivBerg/historyEndpointServerlessLab1) Function accepts an optional user response when called which the user can give a number up to 10 to display. In return, this function will select the newest document added in CosmoDB using the input binding. In return, the function will process and sent a json response to user of the count and results.
 
